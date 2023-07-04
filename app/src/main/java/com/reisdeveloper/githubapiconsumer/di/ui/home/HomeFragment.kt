@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.ui.home
+package com.reisdeveloper.githubapiconsumer.di.ui.home
 
 import android.os.Bundle
 import android.view.View
@@ -15,8 +15,8 @@ import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.githubapiconsumer.R
 import com.reisdeveloper.githubapiconsumer.base.BaseFragment
 import com.reisdeveloper.githubapiconsumer.databinding.FragmentHomeBinding
-import com.reisdeveloper.githubapiconsumer.ui.home.adapter.UserAdapter
-import com.reisdeveloper.githubapiconsumer.ui.user.UserFragment
+import com.reisdeveloper.githubapiconsumer.di.ui.home.adapter.UserAdapter
+import com.reisdeveloper.githubapiconsumer.di.ui.user.UserFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.ui.home
+package com.reisdeveloper.githubapiconsumer.di.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
