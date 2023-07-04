@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.user.UserFragment">
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgUser"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.reisdeveloper.githubapiconsumer.component.UserAttributeView
+        android:id="@+id/txtUserRepos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:attribute="@string/repositories"
+        app:layout_constraintEnd_toStartOf="@id/txtUserFollowers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtUserName" />
+
+    <com.reisdeveloper.githubapiconsumer.component.UserAttributeView
+        android:id="@+id/txtUserFollowers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:attribute="@string/followers"
+        app:layout_constraintEnd_toStartOf="@+id/txtUserFollowing"
+        app:layout_constraintStart_toEndOf="@id/txtUserRepos"
+        app:layout_constraintTop_toBottomOf="@id/txtUserName" />
+
+    <com.reisdeveloper.githubapiconsumer.component.UserAttributeView
+        android:id="@+id/txtUserFollowing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:attribute="@string/following"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtUserFollowers"
+        app:layout_constraintTop_toBottomOf="@id/txtUserName" />
+
+    <TextView
+        android:id="@+id/txtUserReposTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/my_repositories"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtUserRepos" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUserRepos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:clipToPadding="false"
+        android:paddingVertical="24dp"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtUserReposTitle"
+        tools:ignore="UnusedAttribute"
+        tools:listitem="@layout/item_repositories" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
