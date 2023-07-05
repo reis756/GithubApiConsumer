@@ -103,15 +103,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         }
     }
 
+    private fun onLoading(loading: Boolean) {
+        binding.userProgress.isVisible = loading
+    }
+
     private fun setUserDetails(userDetails: UserDetailsResponse) {
         binding.userDataHome.isVisible = true
         binding.userDataHome.avatar = userDetails.avatarUrl
         binding.userDataHome.name = userDetails.name
         binding.userDataHome.url = userDetails.htmlUrl
         binding.userDataHome.login = userDetails.login
-    }
-
-    private fun onLoading(loading: Boolean) {
-        binding.userProgress.isVisible = loading
     }
 }

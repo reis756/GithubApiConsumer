@@ -15,4 +15,5 @@
     <string name="following">Following</string>
     <string name="all_users">All users</string>
     <string name="user_not_found">User not found</string>
+    <string name="repos_not_found">Repositories is not found</string>
 </resources>

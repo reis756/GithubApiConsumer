@@ -1,34 +1,31 @@
 package com.reisdeveloper.githubapiconsumer.ui.user
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.reisdeveloper.data.model.UserDetailsResponse
 import com.reisdeveloper.data.model.UserReposResponse
 import com.reisdeveloper.githubapiconsumer.base.BaseViewModel
 import com.reisdeveloper.lib.usecase.GetUserByNameUseCase
 import com.reisdeveloper.lib.usecase.GetUserReposUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 
 class UserViewModel(
     private val getUserByNameUseCase: GetUserByNameUseCase,
     private val getUserReposUseCase: GetUserReposUseCase
 ) : BaseViewModel() {
 
-    private val _userDetails = MutableLiveData<UserDetailsResponse>()
-    val userDetails: LiveData<UserDetailsResponse> = _userDetails
-
-    private val _userRepos = MutableLiveData<List<UserReposResponse>>()
-    val userRepos: LiveData<List<UserReposResponse>> = _userRepos
+    private val _screen = MutableSharedFlow<Screen>()
+    val screen: SharedFlow<Screen> = _screen
 
     fun getUserByName(name: String) {
         getUserByNameUseCase(name).singleExec(
             onLoadingBaseViewModel = {
-
+                _screen.emit(Screen.Loading(it))
             },
             onError = {
-                it
+                _screen.emit(Screen.UserByNameError)
             },
             onSuccessBaseViewModel = { userDetails ->
-                _userDetails.value = userDetails
+                _screen.emit(Screen.UserByName(userDetails))
             }
         )
     }
@@ -36,14 +33,22 @@ class UserViewModel(
     fun getUserRepos(name: String) {
         getUserReposUseCase(name).singleExec(
             onLoadingBaseViewModel = {
-
+                _screen.emit(Screen.Loading(it))
             },
             onError = {
-                it
+                _screen.emit(Screen.UserReposError)
             },
             onSuccessBaseViewModel = { repos ->
-                _userRepos.value = repos
+                _screen.emit(Screen.UserRepos(repos))
             }
         )
+    }
+
+    sealed class Screen {
+        data class Loading(val loading: Boolean) : Screen()
+        data class UserByName(val user: UserDetailsResponse) : Screen()
+        object UserByNameError : Screen()
+        data class UserRepos(val repos: List<UserReposResponse>) : Screen()
+        object UserReposError : Screen()
     }
 }
