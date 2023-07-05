@@ -10,13 +10,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.reisdeveloper.data.model.UserDetailsResponse
-import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.githubapiconsumer.R
 import com.reisdeveloper.githubapiconsumer.base.BaseFragment
 import com.reisdeveloper.githubapiconsumer.databinding.FragmentHomeBinding
+import com.reisdeveloper.githubapiconsumer.ext.safeNavigate
 import com.reisdeveloper.githubapiconsumer.ui.home.adapter.UserAdapter
 import com.reisdeveloper.githubapiconsumer.ui.user.UserFragment
+import com.reisdeveloper.githubapiconsumer.uiModel.UserDetailsUiModel
+import com.reisdeveloper.githubapiconsumer.uiModel.UserUiModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,8 +30,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     private var userAdapter = UserAdapter(
         object : UserAdapter.Listener {
-            override fun onClickItem(item: UserResponse) {
-                findNavController().navigate(
+            override fun onClickItem(item: UserUiModel) {
+                findNavController().safeNavigate(
                     R.id.action_HomeFragment_to_SecondFragment,
                     Bundle().apply {
                         putString(UserFragment.EXTRA_USER_NAME, item.login)
@@ -57,7 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             viewModel.getUserByName(binding.textInputSearchUser.editText?.text.toString())
         }
         binding.userDataHome.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 R.id.action_HomeFragment_to_SecondFragment,
                 Bundle().apply {
                     putString(UserFragment.EXTRA_USER_NAME, binding.userDataHome.login)
@@ -107,7 +108,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         binding.userProgress.isVisible = loading
     }
 
-    private fun setUserDetails(userDetails: UserDetailsResponse) {
+    private fun setUserDetails(userDetails: UserDetailsUiModel) {
         binding.userDataHome.isVisible = true
         binding.userDataHome.avatar = userDetails.avatarUrl
         binding.userDataHome.name = userDetails.name

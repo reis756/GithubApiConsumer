@@ -1,8 +1,10 @@
 package com.reisdeveloper.githubapiconsumer.ui.user
 
-import com.reisdeveloper.data.model.UserDetailsResponse
-import com.reisdeveloper.data.model.UserReposResponse
 import com.reisdeveloper.githubapiconsumer.base.BaseViewModel
+import com.reisdeveloper.githubapiconsumer.mapper.toUserDetailsUiModel
+import com.reisdeveloper.githubapiconsumer.mapper.toUserReposUiModel
+import com.reisdeveloper.githubapiconsumer.uiModel.UserDetailsUiModel
+import com.reisdeveloper.githubapiconsumer.uiModel.UserReposUiModel
 import com.reisdeveloper.lib.usecase.GetUserByNameUseCase
 import com.reisdeveloper.lib.usecase.GetUserReposUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,7 +27,7 @@ class UserViewModel(
                 _screen.emit(Screen.UserByNameError)
             },
             onSuccessBaseViewModel = { userDetails ->
-                _screen.emit(Screen.UserByName(userDetails))
+                _screen.emit(Screen.UserByName(userDetails.toUserDetailsUiModel()))
             }
         )
     }
@@ -39,16 +41,16 @@ class UserViewModel(
                 _screen.emit(Screen.UserReposError)
             },
             onSuccessBaseViewModel = { repos ->
-                _screen.emit(Screen.UserRepos(repos))
+                _screen.emit(Screen.UserRepos(repos.map { it.toUserReposUiModel() }))
             }
         )
     }
 
     sealed class Screen {
         data class Loading(val loading: Boolean) : Screen()
-        data class UserByName(val user: UserDetailsResponse) : Screen()
+        data class UserByName(val user: UserDetailsUiModel) : Screen()
         object UserByNameError : Screen()
-        data class UserRepos(val repos: List<UserReposResponse>) : Screen()
+        data class UserRepos(val repos: List<UserReposUiModel>) : Screen()
         object UserReposError : Screen()
     }
 }

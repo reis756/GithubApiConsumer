@@ -1,13 +1,14 @@
 package com.reisdeveloper.lib.usecase
 
-import com.reisdeveloper.data.model.UserDetailsResponse
 import com.reisdeveloper.data.repository.UserRepository
+import com.reisdeveloper.lib.domainModel.UserDetailsDomainModel
+import com.reisdeveloper.lib.mapper.toUserDetailsDomainModel
 
 class GetUserByNameUseCase(
     private val userRepository: UserRepository
-) : AbstractUseCase<String, UserDetailsResponse>() {
+) : AbstractUseCase<String, UserDetailsDomainModel>() {
 
-    override suspend fun execute(param: String): UserDetailsResponse {
-        return userRepository.getUserDetails(param)
+    override suspend fun execute(param: String): UserDetailsDomainModel {
+        return userRepository.getUserDetails(param).toUserDetailsDomainModel()
     }
 }

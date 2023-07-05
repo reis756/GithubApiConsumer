@@ -39,6 +39,7 @@ interface GithubApi {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(logger)
+                .addInterceptor(HeaderInterceptor)
                 .build()
 
             return Retrofit.Builder()

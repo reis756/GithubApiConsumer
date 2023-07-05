@@ -11,12 +11,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.reisdeveloper.data.model.UserDetailsResponse
 import com.reisdeveloper.githubapiconsumer.R
 import com.reisdeveloper.githubapiconsumer.base.BaseFragment
 import com.reisdeveloper.githubapiconsumer.databinding.FragmentUserDetailBinding
 import com.reisdeveloper.githubapiconsumer.ext.toPx
 import com.reisdeveloper.githubapiconsumer.ui.user.adapter.UserReposAdapter
+import com.reisdeveloper.githubapiconsumer.uiModel.UserDetailsUiModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -76,7 +76,7 @@ class UserFragment : BaseFragment<FragmentUserDetailBinding, UserViewModel>(
         binding.rvUserRepos.layoutManager = LinearLayoutManager(context)
     }
 
-    private fun setUserDetails(userDetails: UserDetailsResponse) {
+    private fun setUserDetails(userDetails: UserDetailsUiModel) {
         Glide.with(this)
             .load(userDetails.avatarUrl)
             .error(R.drawable.ic_person)

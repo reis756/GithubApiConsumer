@@ -4,6 +4,9 @@ plugins {
 }
 
 android {
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
     namespace 'com.reisdeveloper.data'
     compileSdk 33
 
@@ -16,6 +19,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "GITHUB_TOKEN", "\"" + localProperties['GITHUB_TOKEN'] + "\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

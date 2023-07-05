@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -25,8 +24,6 @@ abstract class BaseFragment<T : ViewBinding, VM : BaseViewModel>(
         _binding = inflateMethod.invoke(inflater, container, false)
         return binding.root
     }
-
-    private lateinit var viewBinding: T
 
     abstract val viewModel: VM
 

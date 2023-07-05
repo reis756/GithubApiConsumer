@@ -1,13 +1,14 @@
 package com.reisdeveloper.lib.usecase
 
-import com.reisdeveloper.data.model.UserReposResponse
 import com.reisdeveloper.data.repository.UserRepository
+import com.reisdeveloper.lib.domainModel.UserReposDomainModel
+import com.reisdeveloper.lib.mapper.toUserReposDomainModel
 
 class GetUserReposUseCase(
     private val userRepository: UserRepository
-) : AbstractUseCase<String, List<UserReposResponse>>() {
+) : AbstractUseCase<String, List<UserReposDomainModel>>() {
 
-    override suspend fun execute(param: String): List<UserReposResponse> {
-        return userRepository.getUserRepos(param)
+    override suspend fun execute(param: String): List<UserReposDomainModel> {
+        return userRepository.getUserRepos(param).map { it.toUserReposDomainModel() }
     }
 }

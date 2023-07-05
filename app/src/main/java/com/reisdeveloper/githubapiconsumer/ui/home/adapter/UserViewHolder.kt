@@ -1,14 +1,14 @@
 package com.reisdeveloper.githubapiconsumer.ui.home.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.githubapiconsumer.databinding.ItemUserBinding
+import com.reisdeveloper.githubapiconsumer.uiModel.UserUiModel
 
 class UserViewHolder(
     private val binding: ItemUserBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(user: UserResponse) {
+    fun bind(user: UserUiModel) {
         binding.apply {
             binding.userData.avatar = user.avatarUrl
             binding.userData.name = user.login

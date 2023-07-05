@@ -3,12 +3,12 @@ package com.reisdeveloper.githubapiconsumer.ui.user.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.reisdeveloper.data.model.UserReposResponse
 import com.reisdeveloper.githubapiconsumer.databinding.ItemRepositoriesBinding
+import com.reisdeveloper.githubapiconsumer.uiModel.UserReposUiModel
 
 class UserReposAdapter() : RecyclerView.Adapter<UserReposAdapter.ViewHolder>() {
 
-    private val repos = mutableListOf<UserReposResponse>()
+    private val repos = mutableListOf<UserReposUiModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -25,7 +25,7 @@ class UserReposAdapter() : RecyclerView.Adapter<UserReposAdapter.ViewHolder>() {
         holder.bind(repos[position])
     }
 
-    fun setItems(list: List<UserReposResponse>) {
+    fun setItems(list: List<UserReposUiModel>) {
         val lastIndex = repos.lastIndex
         notifyItemRangeRemoved(0, repos.size)
 
@@ -39,7 +39,7 @@ class UserReposAdapter() : RecyclerView.Adapter<UserReposAdapter.ViewHolder>() {
         private val binding: ItemRepositoriesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: UserReposResponse) {
+        fun bind(item: UserReposUiModel) {
             with(binding) {
                 txtRepoName.text = item.name
                 txtRepoDescription.text = item.description

@@ -1,18 +1,19 @@
-package com.reisdeveloper.lib
+package com.reisdeveloper.lib.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.data.repository.UserRepository
+import com.reisdeveloper.lib.domainModel.UserDomainModel
+import com.reisdeveloper.lib.mapper.toDomainModel
 import kotlin.math.max
 
 const val STARTING_KEY = 0
 
 class UserPagingSource(
     private val userRepository: UserRepository
-) : PagingSource<Int, UserResponse>() {
+) : PagingSource<Int, UserDomainModel>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserResponse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserDomainModel> {
         val pageIndex = params.key ?: STARTING_KEY
 
         val range = pageIndex.until(pageIndex + params.loadSize)
@@ -20,7 +21,7 @@ class UserPagingSource(
             val response = userRepository.getUsers(pageIndex)
 
             LoadResult.Page(
-                data = response,
+                data = response.map { it.toDomainModel() },
                 prevKey = when (pageIndex) {
                     STARTING_KEY -> null
                     else -> when (val prevKey = ensureValidKey(key = range.first - params.loadSize)) {
@@ -35,7 +36,7 @@ class UserPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, UserResponse>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, UserDomainModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

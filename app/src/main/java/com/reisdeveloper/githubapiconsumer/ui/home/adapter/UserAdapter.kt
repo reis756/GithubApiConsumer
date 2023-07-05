@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.githubapiconsumer.databinding.ItemUserBinding
+import com.reisdeveloper.githubapiconsumer.uiModel.UserUiModel
 
 class UserAdapter(
     private val listener: Listener
-) : PagingDataAdapter<UserResponse, UserViewHolder>(ARTICLE_DIFF_CALLBACK) {
+) : PagingDataAdapter<UserUiModel, UserViewHolder>(ARTICLE_DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
         UserViewHolder(
@@ -31,16 +31,16 @@ class UserAdapter(
     }
 
     companion object {
-        private val ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserResponse>() {
-            override fun areItemsTheSame(oldItem: UserResponse, newItem: UserResponse): Boolean =
+        private val ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserUiModel>() {
+            override fun areItemsTheSame(oldItem: UserUiModel, newItem: UserUiModel): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: UserResponse, newItem: UserResponse): Boolean =
+            override fun areContentsTheSame(oldItem: UserUiModel, newItem: UserUiModel): Boolean =
                 oldItem == newItem
         }
     }
 
     interface Listener {
-        fun onClickItem(item: UserResponse)
+        fun onClickItem(item: UserUiModel)
     }
 }
