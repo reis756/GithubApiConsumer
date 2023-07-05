@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.di.ui.home.adapter
+package com.reisdeveloper.githubapiconsumer.ui.home.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.reisdeveloper.data.model.UserResponse

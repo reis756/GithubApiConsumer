@@ -1,7 +1,6 @@
 package com.reisdeveloper.githubapiconsumer.component
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -65,20 +64,11 @@ class UserDataView @JvmOverloads constructor(
                         this@UserDataView,
                         true
                     )
-                    onLoadAttrs(this)
                     initViews()
                 } finally {
                     recycle()
                 }
             }
-    }
-
-    private fun onLoadAttrs(attrs: TypedArray) {
-        with(attrs) {
-            if (hasValue(R.styleable.UserDataView_name)) {
-                name = getString(R.styleable.UserDataView_name) ?: ""
-            }
-        }
     }
 
     private fun initViews() {

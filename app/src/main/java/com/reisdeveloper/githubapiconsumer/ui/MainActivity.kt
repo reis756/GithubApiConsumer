@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.di.ui
+package com.reisdeveloper.githubapiconsumer.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

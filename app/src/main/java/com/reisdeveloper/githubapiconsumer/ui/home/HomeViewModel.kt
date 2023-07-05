@@ -1,7 +1,5 @@
-package com.reisdeveloper.githubapiconsumer.di.ui.home
+package com.reisdeveloper.githubapiconsumer.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.reisdeveloper.data.model.UserDetailsResponse
@@ -15,9 +13,6 @@ class HomeViewModel(
     private val getUsersUseCase: GetUsersUseCase,
     private val getUserByNameUseCase: GetUserByNameUseCase
 ) : BaseViewModel() {
-
-    private val _searchedUser = MutableLiveData<UserDetailsResponse>()
-    val searchedUser: LiveData<UserDetailsResponse> = _searchedUser
 
     private val _screen = MutableSharedFlow<Screen>()
     val screen: SharedFlow<Screen> = _screen

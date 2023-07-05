@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.di.ui.user
+package com.reisdeveloper.githubapiconsumer.ui.user
 
 import android.os.Bundle
 import android.view.View
@@ -14,7 +14,7 @@ import com.reisdeveloper.githubapiconsumer.R
 import com.reisdeveloper.githubapiconsumer.base.BaseFragment
 import com.reisdeveloper.githubapiconsumer.databinding.FragmentUserDetailBinding
 import com.reisdeveloper.githubapiconsumer.ext.toPx
-import com.reisdeveloper.githubapiconsumer.di.ui.user.adapter.UserReposAdapter
+import com.reisdeveloper.githubapiconsumer.ui.user.adapter.UserReposAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserFragment : BaseFragment<FragmentUserDetailBinding, UserViewModel>(

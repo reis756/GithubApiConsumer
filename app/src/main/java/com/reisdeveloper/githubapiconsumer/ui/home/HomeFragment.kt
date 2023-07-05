@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.di.ui.home
+package com.reisdeveloper.githubapiconsumer.ui.home
 
 import android.os.Bundle
 import android.view.View
@@ -15,8 +15,8 @@ import com.reisdeveloper.data.model.UserResponse
 import com.reisdeveloper.githubapiconsumer.R
 import com.reisdeveloper.githubapiconsumer.base.BaseFragment
 import com.reisdeveloper.githubapiconsumer.databinding.FragmentHomeBinding
-import com.reisdeveloper.githubapiconsumer.di.ui.home.adapter.UserAdapter
-import com.reisdeveloper.githubapiconsumer.di.ui.user.UserFragment
+import com.reisdeveloper.githubapiconsumer.ui.home.adapter.UserAdapter
+import com.reisdeveloper.githubapiconsumer.ui.user.UserFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -83,6 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 userAdapter.loadStateFlow.collect {
+                    binding.prependProgress.isVisible = it.source.prepend is LoadState.Loading
                     binding.appendProgress.isVisible = it.source.append is LoadState.Loading
                 }
             }
@@ -93,8 +94,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                 when(state) {
                     is HomeViewModel.Screen.Loading -> onLoading(state.loading)
                     is HomeViewModel.Screen.UserByName -> setUserDetails(state.user)
-                    is HomeViewModel.Screen.UserByNameError ->
+                    is HomeViewModel.Screen.UserByNameError -> {
+                        binding.userDataHome.isVisible = false
                         showError(getString(R.string.user_not_found))
+                    }
                 }
             }
         }
@@ -109,6 +112,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     private fun onLoading(loading: Boolean) {
-
+        binding.userProgress.isVisible = loading
     }
 }

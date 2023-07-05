@@ -1,4 +1,4 @@
-package com.reisdeveloper.githubapiconsumer.di.ui.home.adapter
+package com.reisdeveloper.githubapiconsumer.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

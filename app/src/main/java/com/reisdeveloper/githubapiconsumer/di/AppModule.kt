@@ -1,7 +1,7 @@
 package com.reisdeveloper.githubapiconsumer.di
 
-import com.reisdeveloper.githubapiconsumer.di.ui.home.HomeViewModel
-import com.reisdeveloper.githubapiconsumer.di.ui.user.UserViewModel
+import com.reisdeveloper.githubapiconsumer.ui.home.HomeViewModel
+import com.reisdeveloper.githubapiconsumer.ui.user.UserViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
