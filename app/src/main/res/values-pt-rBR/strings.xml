@@ -16,4 +16,5 @@
     <string name="all_users">Todos os usuários</string>
     <string name="user_not_found">Usuário não encontrado</string>
     <string name="repos_not_found">Repositórios não encontrados</string>
+    <string name="user_list">User List</string>
 </resources>

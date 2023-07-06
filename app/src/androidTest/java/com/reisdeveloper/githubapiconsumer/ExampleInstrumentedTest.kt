@@ -1,12 +1,17 @@
 package com.reisdeveloper.githubapiconsumer
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import com.reisdeveloper.githubapiconsumer.ui.MainActivity
+import com.reisdeveloper.githubapiconsumer.ui.home.HomeFragment
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +20,17 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+    private val STRING_TO_BE_TYPED = "Espresso"
+
+    @JvmField
+    @Rule
+    var activityScenarioRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(
+        MainActivity::class.java
+    )
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.reisdeveloper.githubapiconsumer", appContext.packageName)
+    fun changeText_sameActivity() {
+        launchFragmentInContainer<HomeFragment>()
+        onView(withId(R.id.imgUser)).perform(click())
     }
 }
