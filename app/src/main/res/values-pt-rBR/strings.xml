@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github API Consumer</string>
+    <string name="action_settings">Configurações</string>
+    <string name="home_fragment_label">Github API Consumer</string>
+    <string name="user_fragment_label">Dados de Usuário</string>
+    <string name="next">Próximo</string>
+    <string name="previous">Anterior</string>
+    <string name="search_bt_user_name">Procurar por nome:</string>
+    <string name="search">Procurar</string>
+    <string name="user_image">Imagem de usuário</string>
+    <string name="my_repositories">Meus Repositórios</string>
+    <string name="repositories">Repositórios</string>
+    <string name="followers">Seguidores</string>
+    <string name="following">Seguindo</string>
+    <string name="all_users">Todos os usuários</string>
+    <string name="user_not_found">Usuário não encontrado</string>
+    <string name="repos_not_found">Repositórios não encontrados</string>
+</resources>

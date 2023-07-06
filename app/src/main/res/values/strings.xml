@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Github API Consumer</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="home_fragment_label">Github API Consumer</string>
+    <string name="user_fragment_label">User Details</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="search_bt_user_name">Search by user name:</string>
+    <string name="search">Search</string>
+    <string name="user_image">User Image</string>
+    <string name="my_repositories">My Repositories</string>
+    <string name="repositories">Repositories</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="all_users">All users</string>
+    <string name="user_not_found">User not found</string>
+    <string name="repos_not_found">Repositories is not found</string>
+</resources>
